@@ -29,8 +29,11 @@ class StudentsServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function register()
-	{		
-		//
+	{
+        $this->app->bind(
+            'Modules\Students\Repositories\Contracts\IStudentsRepository',
+            'Modules\Students\Repositories\StudentsRepository'
+        );
 	}
 
 	/**
