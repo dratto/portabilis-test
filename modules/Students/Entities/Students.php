@@ -2,7 +2,7 @@
 
 namespace Modules\Students\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Pingpong\Presenters\Model;
 
 class Students extends Model
 {

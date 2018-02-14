@@ -34,13 +34,24 @@
                             <a href="{{ url ('') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li {{ (Request::is('*alunos') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('alunos') }}"><i class="fa fa-graduation-cap fa-fw">Alunos</i></a>
+                            <a href="{{ url ('alunos') }}"><i class="fa fa-graduation-cap fa-fw"></i> Alunos</a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="{{ route('students.create') }}">Cadastrar novo Aluno</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('students.index') }}">Listagem de Alunos</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li {{ (Request::is('*cursos') ? 'class="active"' : '') }}>
+                            <a><i class="fa fa-book fa-fw"></i> Cursos</a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('courses.create') }}">Cadastrar novo curso</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('courses.index') }}">Listagem de Cursos</a>
                                 </li>
                             </ul>
                         </li>
