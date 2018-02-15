@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Students\Repositories\Contracts;
+namespace Modules\Registrations\Repositories\Contracts;
 
 
-interface IStudentsRepository
+interface IRegistrationsRepository
 {
-    public function fetch($config = []);
+    public function fetch($config);
     public function fetchById($id);
     public function store($data);
     public function update($data, $id);

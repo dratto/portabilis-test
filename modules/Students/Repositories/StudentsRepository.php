@@ -14,7 +14,7 @@ class StudentsRepository implements IStudentsRepository
         $this->model = $model;
     }
 
-    public function fetch($config)
+    public function fetch($config = [])
     {
         $students = $this->model->orderBy('created_at', 'desc');
 

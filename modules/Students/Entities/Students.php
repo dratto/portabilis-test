@@ -26,4 +26,9 @@ class Students extends Model
     {
         $this->attributes['cpf'] = numbers_only($value);
     }
+
+    public function registrations()
+    {
+        return $this->hasMany('Modules\Registrations\Entities\Registrations', 'student_id');
+    }
 }
