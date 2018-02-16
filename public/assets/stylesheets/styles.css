@@ -8927,4 +8927,12 @@ table.dataTable thead .sorting:after {
 .push-right-1 {
     margin-right: 1em;
 }
+
+.navbar-static-top {
+    margin-bottom:0;
+}
+
+.logo {
+    max-width:50%;
+}
 /*# sourceMappingURL=styles.css.map */

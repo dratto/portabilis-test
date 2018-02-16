@@ -8,6 +8,16 @@ class StudentsRequest extends FormRequest
 {
 
     /**
+     * Treat some inputs before validation
+     **/
+    public function all()
+    {
+        $attributes = parent::all();
+        $attributes['cpf'] = numbers_only($attributes['cpf']);
+        return $attributes;
+    }
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool

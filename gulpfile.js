@@ -12,20 +12,20 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.less('app.less');
     mix.copy('bower_components/bootstrap/dist/fonts', 'public/assets/fonts');
-    mix.copy('bower_components/font-awesome/fonts', 'public/assets/fonts');
+    mix.copy('bower_components/fontawesome/fonts', 'public/assets/fonts');
     mix.styles([
         'bower_components/bootstrap/dist/css/bootstrap.css',
         'bower_components/fontawesome/css/font-awesome.css',
-        'resources/css/sb-admin-2.css'
+        'resources/assets/css/styles.css'
     ], 'public/assets/stylesheets/styles.css', './');
     mix.scripts([
         'bower_components/jquery/dist/jquery.js',
+        'bower_components/jQuery-Mask-Plugin/dist/jquery.mask.js',
         'bower_components/bootstrap/dist/js/bootstrap.js',
-        'bower_components/Chart.js/Chart.js',
         'bower_components/metisMenu/dist/metisMenu.js',
-        'resources/js/sb-admin-2.js',
-        'resources/js/crud-actions.js'
+        'resources/assets/js/scripts.js',
+        'resources/assets/js/crud-actions.js',
+        'resources/assets/js/mask.js'
     ], 'public/assets/scripts/scripts.js', './');
 });

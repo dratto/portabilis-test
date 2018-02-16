@@ -1,32 +1,5 @@
 <?php
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Collection as SupportCollection;
-
-/**
- * Verifica se o arranjo é composto apenas por valores do tipo FALSE
- *
- * @see http://php.net/manual/pt_BR/function.array-filter.php
- * @param array $array O arranjo a ser analisado
- * @return bool Se o arranjo é considerado vazio ou não
- */
-function array_empty(Array $array = [])
-{
-    return empty(array_filter($array));
-}
-
-/**
- * Indica se a variável é do tipo coleção - as mais utilizadas no projeto.
- * Suporta as coleções do Eloquent e helper de suporte do Laravel.
- *
- * @param mixed $variable
- * @return boolean
- */
-function is_collection($variable = [])
-{
-    return (($variable instanceof Collection) || ($variable instanceof SupportCollection));
-}
-
 /**
  * Transforma um valor numérico de decimal para centena.
  *
@@ -64,15 +37,6 @@ function is_cpf($value)
 }
 
 
-function regex_cnpj_cpf()
-{
-    $cpfRegex   = regex_cpf();
-    $cnpjRegex  = regex_cnpj();
-
-    return "({$cnpjRegex}|{$cpfRegex})";
-}
-
-
 /**
  * Helper responsável por fazer máscara de valores como telefone, cep, cnpj, rg e etc.
  *
@@ -92,17 +56,6 @@ function mask($mask,$str)
     }
 
     return $mask;
-}
-
-/**
- * Helper responsável por validar se o numero de telefone é um 0800.
- *
- * @param string $phone = número de telefone
- * @return boolean
- */
-function isFreePhone($phone)
-{
-    return preg_match('/0800[0-9]{3}[0-9]{3}/', $phone);
 }
 
 

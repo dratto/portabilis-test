@@ -27,6 +27,16 @@ class Students extends Model
         $this->attributes['cpf'] = numbers_only($value);
     }
 
+    public function getCpfAttribute()
+    {
+        $cpf = $this->attributes['cpf'];
+
+        if (empty($cpf)) {
+            return '';
+        }
+        return mask('###.###.###-##', $cpf);
+    }
+
     public function registrations()
     {
         return $this->hasMany('Modules\Registrations\Entities\Registrations', 'student_id');

@@ -4,6 +4,6 @@
 	Olá Administrador
 @stop
 
-@section('page_body')
+@section('page_content')
 	<p>Bem vindo ao sistema de gerenciamento escolar</p>
 @stop

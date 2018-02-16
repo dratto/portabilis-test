@@ -16,12 +16,12 @@
 			</div>
 			<div class="form-group col-md-2">
 				<label>Valor da mensalidade</label>
-				{!! Form::text('monthly_fee', $course->monthly_fee, ['class' => 'form-control']) !!}
+				{!! Form::text('monthly_fee', $course->monthly_fee, ['class' => 'form-control', 'data-mask-reference' => 'decimal']) !!}
 			</div>
 
 			<div class="form-group col-md-2">
 				<label>Valor da matrícula</label>
-				{!! Form::text('registration_fee', $course->registration_fee, ['class' => 'form-control']) !!}
+				{!! Form::text('registration_fee', $course->registration_fee, ['class' => 'form-control', 'data-mask-reference' => 'decimal']) !!}
 			</div>
 		</div>
 		<div class="row">

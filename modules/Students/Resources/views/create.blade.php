@@ -15,7 +15,7 @@
 			</div>
 			<div class="form-group col-md-3">
 				<label>CPF</label>
-				{!! Form::text('cpf', old('cpf'), ['class' => 'form-control']) !!}
+				{!! Form::text('cpf', old('cpf'), ['class' => 'form-control', 'data-mask-reference' => 'cpf']) !!}
 			</div>
 		</div>
 		<div class="row">
@@ -25,11 +25,11 @@
 			</div>
 			<div class="form-group col-md-2">
 				<label>Data de nascimento</label>
-				{!! Form::text('date_of_birth', old('date_of_birth'), ['class' => 'form-control']) !!}
+				{!! Form::text('date_of_birth', old('date_of_birth'), ['class' => 'form-control', 'data-mask-reference' => 'date']) !!}
 			</div>
 			<div class="form-group col-md-2">
 				<label>Telefone</label>
-				{!! Form::text('phone', old('phone'), ['class' => 'form-control']) !!}
+				{!! Form::text('phone', old('phone'), ['class' => 'form-control', 'data-mask-reference' => 'phone']) !!}
 			</div>
 		</div>
 		<input type="submit" class="btn btn-success" value="Cadastrar">
