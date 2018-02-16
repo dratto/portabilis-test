@@ -12,7 +12,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url ('') }}">Portabilis Test</a>
+                <a class="navbar-brand" href="{{ url ('/') }}">Portabilis Test</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -31,7 +31,7 @@
                             <!-- /input-group -->
                         </li>
                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ url ('') }}"><i class="fa fa-home fa-fw"></i> Home</a>
                         </li>
                         <li {{ (Request::is('*alunos') ? 'class="active"' : '') }}>
                             <a href="{{ url ('alunos') }}"><i class="fa fa-graduation-cap fa-fw"></i> Alunos</a>
@@ -52,6 +52,17 @@
                                 </li>
                                 <li>
                                     <a href="{{ route('courses.index') }}">Listagem de Cursos</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li {{ (Request::is('*matriculas') ? 'class="active"' : '') }}>
+                            <a><i class="fa fa-folder fa-fw"></i> Matrículas</a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('registrations.create') }}">Cadastrar nova matrícula</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('registrations.index') }}">Listagem de Matrículas</a>
                                 </li>
                             </ul>
                         </li>

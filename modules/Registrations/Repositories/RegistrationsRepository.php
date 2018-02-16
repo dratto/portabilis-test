@@ -18,6 +18,28 @@ class RegistrationsRepository implements IRegistrationsRepository
     {
         $registrations = $this->model->orderBy('created_at', 'desc');
 
+        $registrations->where('enabled', isset($config['status']) ? intval($config['status']) : 1);
+
+        if(isset($config['student']) && !empty($config['student'])) {
+            $registrations->whereHas('student', function($query) use($config) {
+                return $query->where('name', 'like', '%' . $config['student']. '%');
+            });
+        }
+
+        if(isset($config['course']) && !empty($config['course'])) {
+            $registrations->whereHas('course', function($query) use($config) {
+               return $query->where('name', 'like', '%' . $config['course'] . '%');
+            });
+        }
+
+        if(isset($config['year']) && !empty($config['year'])) {
+            $registrations->whereYear('created_at', '=', $config['year']);
+        }
+
+        if(isset($config['isPaid']) && !empty($config['isPaid'])) {
+            $registrations->where('is_paid', $config['isPaid']);
+        }
+
         if (isset($config['total']) and !empty($config['total'])) {
             return $registrations->paginate($config['total']);
         }

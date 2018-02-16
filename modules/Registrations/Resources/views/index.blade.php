@@ -10,7 +10,10 @@
 
 	<a href="{{ route('registrations.create') }}" class="btn btn-primary">Nova Matrícula</a>
 
+	@include('registrations::partials.filter')
+
 	@if(! $registrations->isEmpty())
+
 		<table class="table table-bordered push-top-1">
 			<thead>
 			<tr>
@@ -19,8 +22,7 @@
 				<th>Status</th>
 				<th>Pagamento</th>
 				<th>Data de matrícula</th>
-				<th></th>
-				<th></th>
+				<th class="alert alert-danger"></th>
 			</tr>
 			</thead>
 			<tbody>
@@ -31,13 +33,8 @@
 						<td>{{$registration->present()->enabled}}</td>
 						<td>{{$registration->present()->isPaid}}</td>
 						<td>{{$registration->present()->createdAt}}</td>
-						<td>
-							<a href="{{route('registrations.edit', $registration->id)}}">
-								<i class="fa fa-edit"></i>
-							</a>
-						</td>
-						<td>
-							<a href="{{route('registrations.delete', $registration->id)}}" class="remove-action">
+						<td class="alert alert-danger text-center">
+							<a href="{{route('registrations.delete', $registration->id)}}" class="remove-action text-danger" title="Deletar">
 								<i class="fa fa-remove"></i>
 							</a>
 						</td>

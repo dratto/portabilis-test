@@ -7,6 +7,7 @@ use Modules\Registrations\Repositories\Contracts\IRegistrationsRepository;
 use Modules\Courses\Repositories\Contracts\ICoursesRepository;
 use Modules\Students\Repositories\Contracts\IStudentsRepository;
 use Modules\Registrations\Http\Requests\RegistrationsRequest;
+use Request;
 
 class RegistrationsController extends Controller
 {
@@ -28,13 +29,26 @@ class RegistrationsController extends Controller
 
     public function index()
     {
+        $student = Request::get('student');
+        $course  = Request::get('course');
+        $status  = Request::get('status');
+        $year    = Request::get('year');
+        $isPaid  = Request::get('is_paid');
+
         $config = [
-            'total' => 10
+            'total'   => 10,
+            'student' => $student,
+            'course'  => $course,
+            'status'  => $status,
+            'year'    => $year,
+            'isPaid'  => $isPaid
         ];
 
         $registrations = $this->registrationsRepository->fetch($config);
 
-        return view('registrations::index', compact('registrations'));
+        return view('registrations::index',
+            compact('registrations', 'student', 'course', 'status', 'year', 'isPaid')
+        );
     }
 
     public function create()
