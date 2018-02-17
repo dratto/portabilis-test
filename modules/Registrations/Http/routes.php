@@ -8,4 +8,5 @@ Route::group(['prefix' => 'matriculas', 'namespace' => 'Modules\Registrations\Ht
     Route::get('/edita/{id}',     ['as' => 'edit',   'uses'  =>  'RegistrationsController@edit']);
     Route::post('/atualiza/{id}', ['as' => 'update', 'uses'  =>  'RegistrationsController@update']);
     Route::get('/deleta/{id}',    ['as' => 'delete', 'uses'  =>  'RegistrationsController@delete']);
+    Route::get('/{id}',           ['as' => 'show',   'uses'  =>  'RegistrationsController@show']);
 });

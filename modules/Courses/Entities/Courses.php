@@ -23,4 +23,15 @@ class Courses extends Model
         'period',
         'duration_months'
     ];
+
+    public function setMonthlyFeeAttribute($value)
+    {
+        $this->attributes['monthly_fee'] = string_to_decimal($value);
+    }
+
+    public function setRegistrationFeeAttribute($value)
+    {
+        $this->attributes['registration_fee'] = string_to_decimal($value);
+    }
+
 }

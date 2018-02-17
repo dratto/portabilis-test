@@ -103,3 +103,8 @@ function isValidCPF($cpf)
     return $cpf{10} == ($resto < 2 ? 0 : 11 - $resto);
 }
 
+function string_to_decimal($string)
+{
+    return str_replace(',' , '.', $string);
+}
+

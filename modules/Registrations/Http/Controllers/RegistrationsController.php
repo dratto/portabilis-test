@@ -51,11 +51,18 @@ class RegistrationsController extends Controller
         );
     }
 
+    public function show($id)
+    {
+        $registration = $this->registrationsRepository->fetchById($id);
+
+        return view('registrations::show', compact('registration'));
+    }
+
     public function create()
     {
         $students = $this->studentsRepository->fetch()->pluck('name', 'id')->toArray();
 
-        $courses = $this->coursesRepository->fetch()->pluck('name', 'id')->toArray();
+        $courses = $this->coursesRepository->fetch();
 
         return view('registrations::create', compact('students', 'courses'));
     }
