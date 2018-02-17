@@ -105,6 +105,11 @@ function isValidCPF($cpf)
 
 function string_to_decimal($string)
 {
-    return str_replace(',' , '.', $string);
+    return str_replace(['.', ','] , ['', '.'], $string);
+}
+
+function format_to_money($value)
+{
+    return 'R$'. str_replace('.', ',', $value);
 }
 

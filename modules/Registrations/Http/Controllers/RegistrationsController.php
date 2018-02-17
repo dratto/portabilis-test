@@ -55,7 +55,9 @@ class RegistrationsController extends Controller
     {
         $registration = $this->registrationsRepository->fetchById($id);
 
-        return view('registrations::show', compact('registration'));
+        $payments     = $registration->payments;
+
+        return view('registrations::show', compact('registration', 'payments'));
     }
 
     public function create()

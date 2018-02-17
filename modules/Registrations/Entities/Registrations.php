@@ -32,4 +32,9 @@ class Registrations extends Model
     {
         return $this->belongsTo('Modules\Courses\Entities\Courses', 'course_id');
     }
+
+    public function payments()
+    {
+        return $this->hasMany('Modules\Registrations\Entities\Payments', 'registration_id');
+    }
 }

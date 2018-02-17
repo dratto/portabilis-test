@@ -28,7 +28,11 @@
 			<tbody>
 				@foreach($registrations as $registration)
 					<tr>
-						<td>{{$registration->student->name}}</td>
+						<td>
+							<a href="{{ route('registrations.show', $registration)  }}">
+								{{$registration->student->name}}
+							</a>
+						</td>
 						<td>{{$registration->course->name}}</td>
 						<td>{{$registration->present()->enabled}}</td>
 						<td>{{$registration->present()->isPaid}}</td>

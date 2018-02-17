@@ -2,16 +2,23 @@
 
 namespace Modules\Registrations\Repositories;
 
+use Exception;
+use Log;
+use DB;
 use Modules\Registrations\Repositories\Contracts\IRegistrationsRepository;
+use Modules\Registrations\Repositories\Contracts\IPaymentsRepository;
 use Modules\Registrations\Entities\Registrations;
 
 class RegistrationsRepository implements IRegistrationsRepository
 {
     private $model;
 
-    public function __construct(Registrations $model)
+    private $paymentsRepository;
+
+    public function __construct(Registrations $model, IPaymentsRepository $paymentsRepository)
     {
-        $this->model = $model;
+        $this->model              = $model;
+        $this->paymentsRepository = $paymentsRepository;
     }
 
     public function fetch($config)
@@ -54,7 +61,27 @@ class RegistrationsRepository implements IRegistrationsRepository
 
     public function store($data)
     {
-        return $this->model->fill($data)->save();
+        try {
+            DB::beginTransaction();
+
+            $newRegistration = $this->model;
+
+            $newRegistration->fill($data);
+            $newRegistration->save();
+
+
+            $this->paymentsRepository->storePaymentsToRegistration($newRegistration);
+
+
+            DB::commit();
+
+            return $newRegistration;
+
+        } catch(Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage() . ' ' . $e->getLine());
+            return false;
+        }
     }
 
     public function update($data, $id)

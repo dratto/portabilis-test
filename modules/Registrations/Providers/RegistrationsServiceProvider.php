@@ -34,6 +34,11 @@ class RegistrationsServiceProvider extends ServiceProvider {
             'Modules\Registrations\Repositories\Contracts\IRegistrationsRepository',
             'Modules\Registrations\Repositories\RegistrationsRepository'
         );
+
+        $this->app->bind(
+            'Modules\Registrations\Repositories\Contracts\IPaymentsRepository',
+            'Modules\Registrations\Repositories\PaymentsRepository'
+        );
 	}
 
 	/**

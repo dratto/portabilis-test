@@ -16,13 +16,13 @@ class CoursesRepository implements ICoursesRepository
 
     public function fetch($config = [])
     {
-        $students = $this->model->orderBy('created_at', 'desc');
+        $courses = $this->model->orderBy('created_at', 'desc');
 
         if (isset($config['total']) and !empty($config['total'])) {
-            return $students->paginate($config['total']);
+            return $courses->paginate($config['total']);
         }
 
-        return $students->get();
+        return $courses->get();
     }
 
     public function fetchById($id)
@@ -37,15 +37,15 @@ class CoursesRepository implements ICoursesRepository
 
     public function update($data, $id)
     {
-        $student = $this->model->find($id);
-        return $student->fill($data)->save();
+        $course = $this->model->find($id);
+        return $course->fill($data)->save();
 
     }
 
     public function delete($id)
     {
-        $student = $this->model->find($id);
-        return $student->delete();
+        $course = $this->model->find($id);
+        return $course->delete();
     }
 
 }
