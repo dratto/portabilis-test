@@ -43,8 +43,10 @@ class RegistrationsRepository implements IRegistrationsRepository
             $registrations->whereYear('created_at', '=', $config['year']);
         }
 
-        if(isset($config['isPaid']) && !empty($config['isPaid'])) {
-            $registrations->where('is_paid', $config['isPaid']);
+        if(isset($config['isPaid']) && $config['isPaid']) {
+            $registrations->whereHas('payments', function($query) use($config) {
+                return $query->where('status', $config['isPaid']);
+            });
         }
 
         if (isset($config['total']) and !empty($config['total'])) {
@@ -95,6 +97,27 @@ class RegistrationsRepository implements IRegistrationsRepository
     {
         $registration = $this->model->find($id);
         return $registration->delete();
+    }
+
+    public function getTaxForCancel($registration)
+    {
+        $payments = $registration->payments;
+        $tax = 0;
+        foreach($payments as $payment) {
+            if(! $payment->status) {
+                $tax = ($payment->value_to_pay * 0.01);
+            }
+        }
+        return $tax;
+    }
+
+    public function cancel($id)
+    {
+        $registration = $this->fetchById($id);
+        $registration->enabled = 0;
+        $registration->cancel_date = date('Y-m-d');
+        $registration->save();
+        return $registration;
     }
 
 }

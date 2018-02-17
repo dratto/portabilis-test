@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('page_header')
-    Matrícula
+    Matrícula - Status: {{$registration->present()->enabled}}
 @stop
 
 @section('page_content')
@@ -9,8 +9,9 @@
     @include('errors.alerts')
 
     @if($registration)
-
-        <a href="" class="btn btn-danger">Cancelar Matrícula</a>
+        @if($registration->enabled)
+            <a href="{{route('registrations.cancel.index', $registration->id)}}" class="btn btn-danger">Cancelar Matrícula</a>
+        @endif
 
         <div class="row push-top-1">
 

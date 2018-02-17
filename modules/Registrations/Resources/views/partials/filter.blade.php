@@ -15,7 +15,7 @@
                 <label>Status</label>
                 {!! Form::select('status', [
                     1 => 'Ativa',
-                    0 => 'Inativa'
+                    0 => 'Cancelada'
                 ], $status, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-md-2">

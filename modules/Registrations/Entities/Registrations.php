@@ -37,4 +37,15 @@ class Registrations extends Model
     {
         return $this->hasMany('Modules\Registrations\Entities\Payments', 'registration_id');
     }
+
+    public function isPaid()
+    {
+        $payments = $this->payments;
+        foreach($payments as $payment) {
+            if(! $payment->status) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

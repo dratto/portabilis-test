@@ -18,10 +18,10 @@ class RegistrationsPresenter extends Presenter
 
     public function isPaid()
     {
-        if($this->getEntity()->is_paid) {
+        if($this->getEntity()->isPaid()) {
             return 'Paga';
         }
-        return 'Não paga';
+        return 'Pagamento pendente';
     }
 
     public function createdAt()

@@ -78,29 +78,30 @@ class RegistrationsController extends Controller
         return redirect()->route('registrations.index')->with(['success' => 'Curso cadastrado com sucesso']);
     }
 
-    public function edit($id)
-    {
-        $registration = $this->registrationsRepository->fetchById($id);
-
-        return view('registrations::edit', compact('registration'));
-    }
-
-    public function update(RegistrationsRequest $data, $id)
-    {
-        $updatedRegistration = $this->registrationsRepository->update($data->all(), $id);
-        if(! $updatedRegistration) {
-            return back()->withErrors(['Erro ao atualizar curso. Por favor, tente novamente mais tarde.'])->withInput();
-        }
-        return redirect()->route('registrations.edit', $id)->with(['success' => 'Curso atualizado com sucesso']);
-    }
-
     public function delete($id)
     {
         $deleted = $this->registrationsRepository->delete($id);
         if(! $deleted) {
             return back()->withErrors(['Erro ao excluir curso']);
         }
-        return redirect()->route('registrations.index')->with(['success' => 'Curso excluído com sucesso']);
+        return redirect()->route('registrations.index')->with(['success' => 'Matrícula excluído com sucesso']);
 
+    }
+
+    public function cancelIndex($id)
+    {
+        $registration = $this->registrationsRepository->fetchById($id);
+        $tax          = $this->registrationsRepository->getTaxForCancel($registration);
+
+        return view('registrations::cancel.index', compact('registration', 'tax'));
+    }
+
+    public function cancelStore($id)
+    {
+        $canceledRegistration = $this->registrationsRepository->cancel($id);
+        if(! $canceledRegistration) {
+            return back()->withErrors(['Erro ao cancelar matrícula. Por favor, tente novamente mais tarde.']);
+        }
+        return redirect()->route('registrations.index')->with(['success' => 'A matrícula foi cancelada com sucesso!']);
     }
 }
