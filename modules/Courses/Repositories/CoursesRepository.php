@@ -32,7 +32,9 @@ class CoursesRepository implements ICoursesRepository
 
     public function store($data)
     {
-        return $this->model->fill($data)->save();
+        $newCourse = new $this->model;
+        $newCourse->fill($data);
+        return $newCourse->save();
     }
 
     public function update($data, $id)

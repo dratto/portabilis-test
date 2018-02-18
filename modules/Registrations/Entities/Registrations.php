@@ -20,7 +20,7 @@ class Registrations extends Model
         'student_id',
         'course_id',
         'enabled',
-        'is_paid'
+        'cancel_date'
     ];
 
     public function student()

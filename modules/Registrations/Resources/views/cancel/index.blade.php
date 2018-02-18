@@ -9,12 +9,15 @@
     @include('errors.alerts')
 
     <div class="row">
-        <div class="col-md-12">
-            <span><strong>Valor da multa</strong>: R$ {{number_format($tax, 2, ',', '.')}}</span>
-        </div>
-        <div class="col-md-4 push-top-1">
-            <a href="{{route('registrations.cancel.store', $registration->id)}}" class="btn btn-danger">Cancelar e pagar multa</a>
-        </div>
+        {!! Form::open(['route' => ['registrations.cancel.store', $registration->id], 'id' => 'main-form']) !!}
+            <div class="col-md-12">
+                <input value="{{$tax}}" name="tax" type="hidden">
+                <span><strong>Valor da multa</strong>: R$ {{number_format($tax, 2, ',', '.')}}</span>
+            </div>
+            <div class="col-md-4 push-top-1">
+                <input value="Cancelar e pagar multa" type="submit" class="btn btn-danger">
+            </div>
+        {!! Form::close() !!}
     </div>
 
 @stop

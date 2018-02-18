@@ -11,7 +11,7 @@
 	<a href="{{ route('courses.create') }}" class="btn btn-primary">Novo Curso</a>
 
 	@if(! $courses->isEmpty())
-		<table class="table table-bordered push-top-1">
+		<table class="table table-bordered table-striped table-hover push-top-1">
 			<thead>
 			<tr>
 				<th>Nome</th>
@@ -27,17 +27,17 @@
 				@foreach($courses as $course)
 					<tr>
 						<td>{{$course->name}}</td>
-						<td>{{$course->monthly_fee}}</td>
-						<td>{{$course->registration_fee}}</td>
+						<td>{{$course->present()->monthlyFee}}</td>
+						<td>{{$course->present()->registrationFee}}</td>
 						<td>{{$course->present()->period}}</td>
 						<td>{{$course->duration_months}}</td>
-						<td>
-							<a href="{{route('courses.edit', $course->id)}}">
+						<td class="alert-warning text-center">
+							<a href="{{route('courses.edit', $course->id)}}" class="text-warning">
 								<i class="fa fa-edit"></i>
 							</a>
 						</td>
-						<td>
-							<a href="{{route('courses.delete', $course->id)}}" class="remove-action">
+						<td class="alert-danger text-center">
+							<a href="{{route('courses.delete', $course->id)}}" class="remove-action text-danger">
 								<i class="fa fa-remove"></i>
 							</a>
 						</td>

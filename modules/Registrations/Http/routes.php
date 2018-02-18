@@ -14,7 +14,7 @@ Route::group(['prefix' => 'matriculas', 'namespace' => 'Modules\Registrations\Ht
 
     //Cancelamento
     Route::get('{id}/cancelamento', ['as' => 'cancel.index',  'uses'  =>  'RegistrationsController@cancelIndex']);
-    Route::get('{id}/cancelar',     ['as' => 'cancel.store',  'uses'  =>  'RegistrationsController@cancelStore']);
+    Route::post('{id}/cancelar',    ['as' => 'cancel.store',  'uses'  =>  'RegistrationsController@cancelStore']);
 
 
     //Dashboard

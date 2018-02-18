@@ -14,7 +14,7 @@
 
 	@if(! $registrations->isEmpty())
 
-		<table class="table table-bordered push-top-1">
+		<table class="table table-bordered table-striped table-hover push-top-1">
 			<thead>
 			<tr>
 				<th>Aluno</th>
@@ -22,7 +22,6 @@
 				<th>Status</th>
 				<th>Pagamento</th>
 				<th>Data de matrícula</th>
-				<th class="alert alert-danger"></th>
 			</tr>
 			</thead>
 			<tbody>
@@ -37,11 +36,6 @@
 						<td>{{$registration->present()->enabled}}</td>
 						<td>{{$registration->present()->isPaid}}</td>
 						<td>{{$registration->present()->createdAt}}</td>
-						<td class="alert alert-danger text-center">
-							<a href="{{route('registrations.delete', $registration->id)}}" class="remove-action text-danger" title="Deletar">
-								<i class="fa fa-remove"></i>
-							</a>
-						</td>
 					</tr>
 				@endforeach
 			</tbody>

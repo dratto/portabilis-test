@@ -111,11 +111,21 @@ class RegistrationsRepository implements IRegistrationsRepository
         return $tax;
     }
 
-    public function cancel($id)
+    public function cancel($id, $data)
     {
+        $tax = (isset($data['tax'])) ? $data['tax'] : null;
         $registration = $this->fetchById($id);
         $registration->enabled = 0;
         $registration->cancel_date = date('Y-m-d');
+        $payments = $registration->payments;
+        foreach($payments as $payment) {
+            $payment->delete();
+        }
+        $this->paymentsRepository->store([
+            'registration_id' => $registration->id,
+            'value_to_pay'    => $tax,
+            'type'            => 'monthly_fee'
+        ]);
         $registration->save();
         return $registration;
     }

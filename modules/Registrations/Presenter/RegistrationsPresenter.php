@@ -32,4 +32,12 @@ class RegistrationsPresenter extends Presenter
         return '';
     }
 
+    public function cancelDate()
+    {
+        if ($this->getEntity()->cancel_date) {
+            return date('d/m/Y', strtotime($this->getEntity()->cancel_date));
+        }
+        return '';
+    }
+
 }

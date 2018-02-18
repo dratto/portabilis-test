@@ -7,6 +7,7 @@ use Modules\Registrations\Repositories\Contracts\IRegistrationsRepository;
 use Modules\Courses\Repositories\Contracts\ICoursesRepository;
 use Modules\Students\Repositories\Contracts\IStudentsRepository;
 use Modules\Registrations\Http\Requests\RegistrationsRequest;
+use Modules\Registrations\Http\Requests\CancelRegistrationsRequest;
 use Request;
 
 class RegistrationsController extends Controller
@@ -96,9 +97,9 @@ class RegistrationsController extends Controller
         return view('registrations::cancel.index', compact('registration', 'tax'));
     }
 
-    public function cancelStore($id)
+    public function cancelStore($id, CancelRegistrationsRequest $data)
     {
-        $canceledRegistration = $this->registrationsRepository->cancel($id);
+        $canceledRegistration = $this->registrationsRepository->cancel($id, $data->all());
         if(! $canceledRegistration) {
             return back()->withErrors(['Erro ao cancelar matrícula. Por favor, tente novamente mais tarde.']);
         }

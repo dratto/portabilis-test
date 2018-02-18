@@ -9,14 +9,26 @@
     @include('errors.alerts')
 
     @if($registration)
-        @if($registration->enabled)
-            <a href="{{route('registrations.cancel.index', $registration->id)}}" class="btn btn-danger">Cancelar Matrícula</a>
-        @endif
+
+        <div class="row">
+            <div class="col-md-4">
+                @if($registration->enabled)
+                    <a href="{{route('registrations.cancel.index', $registration->id)}}" class="btn btn-danger">Cancelar Matrícula</a>
+                @else
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">Data do cancelamento</div>
+                        <div class="panel-body">
+                            <span class="text-danger">{{$registration->present()->cancelDate}}</span>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
 
         <div class="row push-top-1">
 
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">Informações do Aluno</div>
                     <div class="panel-body">
                         <ul>
@@ -31,7 +43,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">Informações do Curso</div>
                     <div class="panel-body">
                         <ul>
@@ -52,7 +64,7 @@
                 <h3>Informações de pagamento</h3>
                 <div class="col-md-8">
                     @if($payments)
-                        <table class="table table-bordered push-top-1">
+                        <table class="table table-bordered table-striped table-hover push-top-1">
                             <thead>
                                 <tr>
                                     <th>Tipo de pagamento</th>
