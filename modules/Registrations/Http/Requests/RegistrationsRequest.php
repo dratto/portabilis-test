@@ -36,7 +36,7 @@ class RegistrationsRequest extends FormRequest
         $course = $coursesRepository->fetchById($this->course_id);
         return [
             'student_id.required'         => 'Por favor selecione um aluno',
-            'student_id.student_schedule' => 'O aluno selecionado já está matriculado em um curso no período '. $course->present()->period,
+            'student_id.student_schedule' => 'O aluno selecionado já está matriculado em um curso no período '. ((isset($course)) ? $course->present()->period : 'selecionado'),
             'course_id.required'          => 'Por favor selecione um curso',
         ];
     }

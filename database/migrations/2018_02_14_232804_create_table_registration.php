@@ -17,12 +17,13 @@ class CreateTableRegistration extends Migration
             $table->integer('student_id');
             $table->integer('course_id');
             $table->boolean('enabled')->default(1);
+            $table->integer('year');
             $table->boolean('is_paid')->default(0);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('student_id')->references('id')->on('students')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-            $table->foreign('course_id')->references('id')->on('courses')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign('student_id')->references('id')->on('students')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('course_id')->references('id')->on('courses')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

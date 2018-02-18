@@ -23,7 +23,7 @@ class CreateTablePayments extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('registration_id')->references('id')->on('registration')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign('registration_id')->references('id')->on('registration')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

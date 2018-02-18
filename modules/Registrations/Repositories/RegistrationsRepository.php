@@ -66,7 +66,7 @@ class RegistrationsRepository implements IRegistrationsRepository
         try {
             DB::beginTransaction();
 
-            $newRegistration = $this->model;
+            $newRegistration = new $this->model;
 
             $newRegistration->fill($data);
             $newRegistration->save();

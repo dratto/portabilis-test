@@ -32,7 +32,9 @@ class StudentsRepository implements IStudentsRepository
 
     public function store($data)
     {
-        return $this->model->fill($data)->save();
+        $newStudent = new $this->model;
+        $newStudent->fill($data);
+        return $newStudent->save();
     }
 
     public function update($data, $id)

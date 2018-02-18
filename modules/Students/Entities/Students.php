@@ -15,6 +15,7 @@ class Students extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'name',
         'cpf',
         'rg',
@@ -25,6 +26,11 @@ class Students extends Model
     public function setCPFAttribute($value)
     {
         $this->attributes['cpf'] = numbers_only($value);
+    }
+
+    public function setPhoneAttribute($value)
+    {
+        $this->attributes['phone'] = numbers_only($value);
     }
 
     public function getCpfAttribute()
