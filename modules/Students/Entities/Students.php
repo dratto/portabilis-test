@@ -51,6 +51,7 @@ class Students extends Model
                 $date = $date[2] . '-' . $date[1] . '-' . $date[0];
                 $this->attributes['date_of_birth'] = $date;
             }
+            $this->attributes['date_of_birth'] = $value;
         }
     }
 
