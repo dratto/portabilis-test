@@ -47,8 +47,10 @@ class Students extends Model
     {
         if(!empty($value)) {
             $date = explode('/', $value);
-            $date = $date[2] . '-' . $date[1] . '-' . $date[0];
-            $this->attributes['date_of_birth'] = $date;
+            if(isset($data[2])) {
+                $date = $date[2] . '-' . $date[1] . '-' . $date[0];
+                $this->attributes['date_of_birth'] = $date;
+            }
         }
     }
 
