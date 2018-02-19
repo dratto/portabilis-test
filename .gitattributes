@@ -1,3 +1,4 @@
+*.php -text
 * text=auto
 *.css linguist-vendored
 *.less linguist-vendored
