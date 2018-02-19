@@ -21,6 +21,7 @@
 				<th>Curso</th>
 				<th>Status</th>
 				<th>Pagamento</th>
+				<th>Ano letivo</th>
 				<th>Data de matrícula</th>
 			</tr>
 			</thead>
@@ -35,6 +36,7 @@
 						<td>{{$registration->course->name}}</td>
 						<td>{{$registration->present()->enabled}}</td>
 						<td>{{$registration->present()->isPaid}}</td>
+						<td>{{$registration->year}}</td>
 						<td>{{$registration->present()->createdAt}}</td>
 					</tr>
 				@endforeach

@@ -71,7 +71,7 @@ class ImportRegistrationsService
             $busyPeriods = $student->registrations;
             foreach($busyPeriods as $busyPeriod) {
                 if( ($busyPeriod->course->period === $course->period) &&
-                    (date('Y', strtotime($busyPeriod->course->created_at)) === $year)) {
+                    ($busyPeriod->year == $year)) {
                     return false;
                 }
             }

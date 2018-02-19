@@ -63,7 +63,7 @@ class RegistrationsController extends Controller
 
     public function create()
     {
-        $students = $this->studentsRepository->fetch()->pluck('name', 'id')->toArray();
+        $students = $this->studentsRepository->fetch()->pluck('name', 'id');
 
         $courses = $this->coursesRepository->fetch();
 

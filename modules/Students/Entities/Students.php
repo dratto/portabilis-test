@@ -43,6 +43,15 @@ class Students extends Model
         return mask('###.###.###-##', $cpf);
     }
 
+    public function setDateOfBirthAttribute($value)
+    {
+        if(!empty($value)) {
+            $date = explode('/', $value);
+            $date = $date[2] . '-' . $date[1] . '-' . $date[0];
+            $this->attributes['date_of_birth'] = $date;
+        }
+    }
+
     public function registrations()
     {
         return $this->hasMany('Modules\Registrations\Entities\Registrations', 'student_id');

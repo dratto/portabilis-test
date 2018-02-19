@@ -28,6 +28,10 @@
 					@endforeach
 				</select>
 			</div>
+			<div class="form-group col-md-4">
+				<label>Ano</label>
+				<input type="number" name="year" class="form-control">
+			</div>
 		</div>
 		<input type="submit" class="btn btn-success" value="Realizar matrícula">
 	{!! Form::close() !!}

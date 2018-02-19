@@ -40,7 +40,7 @@ class RegistrationsRepository implements IRegistrationsRepository
         }
 
         if(isset($config['year']) && !empty($config['year'])) {
-            $registrations->whereYear('created_at', '=', $config['year']);
+            $registrations->where('year', $config['year']);
         }
 
         if(isset($config['isPaid']) && $config['isPaid']) {
@@ -50,7 +50,13 @@ class RegistrationsRepository implements IRegistrationsRepository
         }
 
         if (isset($config['total']) and !empty($config['total'])) {
-            return $registrations->paginate($config['total']);
+            return $registrations->paginate($config['total'])->appends([
+                'student' => $config['student'],
+                'course'  => $config['course'],
+                'year'    => $config['year'],
+                'isPaid'  => $config['isPaid'],
+                'enabled' => $config['status']
+            ]);
         }
 
         return $registrations->get();

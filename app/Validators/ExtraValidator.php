@@ -43,7 +43,7 @@ class ExtraValidator extends Validator
             $busyPeriods = $student->registrations;
             foreach($busyPeriods as $busyPeriod) {
                 if( ($busyPeriod->course->period === $course->period) &&
-                    (date('Y', strtotime($busyPeriod->course->created_at)) === date('Y'))) {
+                    ($busyPeriod->year == $parameters[1])) {
                     return false;
                 }
             }

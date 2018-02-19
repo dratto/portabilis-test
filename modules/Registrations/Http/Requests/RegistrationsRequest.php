@@ -25,8 +25,9 @@ class RegistrationsRequest extends FormRequest
     public function rules()
     {
         return [
-            'student_id' => 'required|student_schedule:'.$this->course_id,
+            'student_id' => 'required|student_schedule:'.$this->course_id. ','.$this->year,
             'course_id'  => 'required',
+            'year'       => 'required',
         ];
     }
 
@@ -38,6 +39,7 @@ class RegistrationsRequest extends FormRequest
             'student_id.required'         => 'Por favor selecione um aluno',
             'student_id.student_schedule' => 'O aluno selecionado já está matriculado em um curso no período '. ((isset($course)) ? $course->present()->period : 'selecionado'),
             'course_id.required'          => 'Por favor selecione um curso',
+            'year.required'               => 'O campo ano é obrigatório'
         ];
     }
 
