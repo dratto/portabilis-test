@@ -39,14 +39,12 @@ class RegistrationsRepository implements IRegistrationsRepository
             });
         }
 
-        if(isset($config['year']) && !empty($config['year'])) {
-            $registrations->where('year', $config['year']);
+        if(isset($config['isPaid'])) {
+            $registrations->where('is_paid', $config['isPaid']);
         }
 
-        if(isset($config['isPaid']) && $config['isPaid']) {
-            $registrations->whereHas('payments', function($query) use($config) {
-                return $query->where('status', $config['isPaid']);
-            });
+        if(isset($config['year']) && !empty($config['year'])) {
+            $registrations->where('year', $config['year']);
         }
 
         if (isset($config['total']) and !empty($config['total'])) {
@@ -134,6 +132,17 @@ class RegistrationsRepository implements IRegistrationsRepository
         ]);
         $registration->save();
         return $registration;
+    }
+
+    public function checkIfAllPaymentsWereDone($registration)
+    {
+        if($registration) {
+            $paymentsUndone = $registration->payments->where('status', false);
+            if($paymentsUndone->isEmpty()) {
+                $registration->is_paid = true;
+                $registration->save();
+            }
+        }
     }
 
 }

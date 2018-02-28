@@ -4,6 +4,7 @@ namespace Modules\Registrations\Http\Controllers;
 
 use Pingpong\Modules\Routing\Controller;
 use Modules\Registrations\Repositories\Contracts\IPaymentsRepository;
+use Modules\Registrations\Repositories\Contracts\IRegistrationsRepository;
 use Modules\Registrations\Http\Requests\PaymentsRequest;
 
 class PaymentsController extends Controller
@@ -11,9 +12,12 @@ class PaymentsController extends Controller
 
     private $paymentsRepository;
 
-    public function __construct(IPaymentsRepository $paymentsRepository)
+    private $registrationRepository;
+
+    public function __construct(IPaymentsRepository $paymentsRepository, IRegistrationsRepository $registrationsRepository)
     {
-        $this->paymentsRepository = $paymentsRepository;
+        $this->paymentsRepository     = $paymentsRepository;
+        $this->registrationRepository = $registrationsRepository;
     }
 
     public function show($id, $paymentId)
@@ -34,9 +38,11 @@ class PaymentsController extends Controller
         return abort(404);
     }
 
-    public function doPayment($id, $paymentId, PaymentsRequest$data)
+    public function doPayment($id, $paymentId, PaymentsRequest $data)
     {
-        $payment = $this->paymentsRepository->doPayment($id, $paymentId, $data->all());
+        $registration = $this->registrationRepository->fetchById($id);
+        $payment = $this->paymentsRepository->doPayment($paymentId, $data->all());
+        $this->registrationRepository->checkIfAllPaymentsWereDone($registration);
         if($payment) {
             return redirect()->route('registrations.show', $id)->with(['success' => 'Pagamento efetuado com sucesso']);
         }

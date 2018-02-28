@@ -72,7 +72,7 @@ class PaymentsRepository implements IPaymentsRepository
         }
     }
 
-    public function doPayment($id, $paymentId, $data)
+    public function doPayment($paymentId, $data)
     {
         $payment = $this->fetchById($paymentId);
         $value = number_format(string_to_decimal($data['value']), 2, '.', '');

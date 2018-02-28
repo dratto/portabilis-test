@@ -21,7 +21,8 @@ class Registrations extends Model
         'course_id',
         'enabled',
         'cancel_date',
-        'year'
+        'year',
+        'is_paid'
     ];
 
     public function student()
@@ -37,16 +38,5 @@ class Registrations extends Model
     public function payments()
     {
         return $this->hasMany('Modules\Registrations\Entities\Payments', 'registration_id');
-    }
-
-    public function isPaid()
-    {
-        $payments = $this->payments;
-        foreach($payments as $payment) {
-            if(! $payment->status) {
-                return false;
-            }
-        }
-        return true;
     }
 }
