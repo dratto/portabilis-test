@@ -50,4 +50,9 @@ class StudentsRepository implements IStudentsRepository
         return $student->delete();
     }
 
+    public function fetchToRegistration()
+    {
+        return $this->model->get(['id', 'name']);
+    }
+
 }
